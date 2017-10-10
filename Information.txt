@@ -1,1 +1,5 @@
-Assignment Information file
+# Assignment Information file
+
+For Assignment Development, I used Visual Studio 2012 and SQL Server 2008
+
+Used Microsoft Azure for Hosting Assignment
