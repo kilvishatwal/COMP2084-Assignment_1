@@ -8,4 +8,4 @@
         
 # Microsoft Azure Assignment Hosting Server Link 
 
-      http://13.93.127.226/
+http://13.93.127.226/
