@@ -1,0 +1,36 @@
+﻿@model IEnumerable<WebApplication2.Product>
+ 
+@{
+    ViewBag.Title = "List of products";
+ 
+}
+
+ 
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+    @foreach (var item in Model)
+    {
+        
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+
+                <div class="caption">
+                    <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
+                    <a href="#" class="btn btn-default" role="button">@Html.DisplayFor(modelItem => item.Brand.Name)</a>
+                    <p>@Html.DisplayFor(modelItem => item.Descript).</p>
+                    <p><a href="#" class="btn btn-primary" role="button">$ @Html.DisplayFor(modelItem => item.Price)</a></p>
+
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </div>
+            </div>
+        </div>
+         
+               
+           
+    }
+
+ 

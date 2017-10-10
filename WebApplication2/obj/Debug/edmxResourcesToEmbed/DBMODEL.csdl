@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Database1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Database1Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Products" EntityType="Database1Model.Product" />
+    <EntitySet Name="Brands" EntityType="Database1Model.Brand" />
+    <AssociationSet Name="FK_Products_ToBrands" Association="Database1Model.FK_Products_ToBrands">
+      <End Role="Brand" EntitySet="Brands" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Descript" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Brand_Id" Type="Int32" />
+    <NavigationProperty Name="Brand" Relationship="Database1Model.FK_Products_ToBrands" FromRole="Product" ToRole="Brand" />
+  </EntityType>
+  <EntityType Name="Brand">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Descript" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Addrs" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Products" Relationship="Database1Model.FK_Products_ToBrands" FromRole="Brand" ToRole="Product" />
+  </EntityType>
+  <Association Name="FK_Products_ToBrands">
+    <End Type="Database1Model.Brand" Role="Brand" Multiplicity="0..1" />
+    <End Type="Database1Model.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Brand">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="Brand_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
